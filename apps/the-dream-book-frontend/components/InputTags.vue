@@ -4,7 +4,7 @@
         <ul>
             <li v-for="tag in tags" :key="tag" class="tag" @click="deleteTag(tag)" title="Deletar tag">{{ tag }}</li>
             <li class="input-tags__input">
-                <input ref="inputRef"  @keydown.enter="addTag" :id="id" :placeholder="placeholder"/>
+                <input ref="inputRef" @blur="handleBlur"  @keydown.enter.prevent="addTag" :id="id" :placeholder="placeholder"/>
             </li>
         </ul>
     </div>
@@ -32,6 +32,10 @@ function handleContainerClick(event) {
     if(event.target !== inputRef.value) {
         inputRef.value.focus()
     }
+}
+
+function handleBlur(event) {
+    event.target.value = ''
 }
 
 
