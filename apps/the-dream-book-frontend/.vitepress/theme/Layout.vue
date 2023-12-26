@@ -20,20 +20,67 @@ const { site, frontmatter, page } = useData()
       <li><a href="./api-examples.html">API Examples</a></li>
     </ul>
   </div>
-  <div v-else-if="frontmatter.layout === 'dream'">
-    <a :href="withBase('/')">Home</a>
-
-    <h1>{{ frontmatter.title }}</h1>
-    <p>{{ new Intl.DateTimeFormat('pt-BR').format(new Date(frontmatter.date))  }}</p>
-    <p>{{ frontmatter.author }}</p>
-    <ul>
-      <li v-for="tag in frontmatter.tags" :key="tag">{{ tag }}</li>
-    </ul>
+  <div v-else-if="frontmatter.layout === 'dream'" class="page-dream">
+    <section class="container-center">
+      <header class="section-header">
+        <a :href="withBase('/')" title="Home" class="back-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
+            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+          </svg>
+          Voltar
+        </a>
     
-    <Content />
+        <p class="date">{{ new Intl.DateTimeFormat('pt-BR').format(new Date(frontmatter.date))  }}</p>
+        <h1>{{ frontmatter.title }}</h1>
+        
+        <p class="author"><div class="avatar">GA</div> {{ frontmatter.author }}</p>
+        <ul class="tags">
+          <li v-for="tag in frontmatter.tags" :key="tag" class="tag">{{ tag }}</li>
+        </ul>
+      </header>
+  
+      <Content class="section-content" />
+    </section>
   </div>
   <div v-else>
     <a :href="withBase('/')">Home</a>
     <Content />
   </div>
 </template>
+
+<style>
+.page-dream {
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: center;
+}
+
+.container-center {
+  /* background-color: red; */
+  padding: 1rem;
+  max-width: 680px;
+}
+
+.section-header {
+  /* background-color: red; */
+  margin-bottom: 3rem;
+}
+
+
+
+.section-content {
+  /* background-color: rgb(206, 206, 206); */
+}
+
+p.author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+p.date {
+  font-size: 1rem;
+}
+
+</style>
