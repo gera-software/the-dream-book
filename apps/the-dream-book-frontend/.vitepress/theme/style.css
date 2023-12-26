@@ -34,7 +34,8 @@ a:hover {
 
 
 h1 {
-  font-size: 3.8rem;
+  /* font-size: 3.8rem; */
+  font-size: clamp(2rem, 3.8vw, 3.8rem);
   font-weight: 700;
   margin: 0;
 }
@@ -66,6 +67,7 @@ p {
   display: flex;
   gap: 5px;
   margin: 1rem 0;
+  align-items: center;
 }
 
 .tag {
@@ -74,6 +76,7 @@ p {
   padding: .3rem 1rem;
   border-radius: 50px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 
