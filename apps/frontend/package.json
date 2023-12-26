@@ -1,0 +1,17 @@
+{
+  "name": "the-dream-book-frontend",
+  "version": "1.0.0",
+  "description": "Um livro que conta as histórias dos nossos melhores sonhos",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vue": "^3.3.13",
+    "vitepress": "^1.0.0-rc.33"
+  },
+  "keywords": [],
+  "author": "Gilmar Andrade <gilmar-andrade@outlook.com",
+  "license": "MIT"
+}
