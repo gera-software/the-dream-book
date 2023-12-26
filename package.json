@@ -1,17 +1,20 @@
 {
   "name": "the-dream-book",
-  "version": "1.0.0",
-  "description": "Um livro que conta as histórias dos nossos melhores sonhos",
+  "private": true,
   "scripts": {
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "vue": "^3.3.13",
-    "vitepress": "^1.0.0-rc.33"
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "prettier": "^3.1.0",
+    "turbo": "latest"
   },
-  "keywords": [],
-  "author": "Gilmar Andrade <gilmar-andrade@outlook.com",
-  "license": "MIT"
+  "packageManager": "pnpm@8.9.0",
+  "engines": {
+    "node": ">=18"
+  }
 }
