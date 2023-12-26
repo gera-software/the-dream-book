@@ -61,13 +61,22 @@ const { site, frontmatter, page } = useData()
       <Content class="section-content" />
     </section>
   </div>
-  <div v-else>
-    <a :href="withBase('/')">Home</a>
-    <Content />
+  <div v-else class="page">
+    <div class="container-center">
+      <a :href="withBase('/')">Home</a>
+      <Content />
+    </div>
   </div>
 </template>
 
 <style>
+
+.page {
+    background-color: aqua;
+    display: flex;
+  justify-content: center;
+}
+
 .page-dream {
   /* background-color: aqua; */
   display: flex;
@@ -77,6 +86,7 @@ const { site, frontmatter, page } = useData()
 .container-center {
   /* background-color: red; */
   padding: 1rem;
+  width: 100%;
   max-width: 680px;
 }
 

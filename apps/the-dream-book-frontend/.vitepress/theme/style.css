@@ -5,10 +5,12 @@
 }
 
 
-html {
+html, input, textarea {
   font-family: Gelasio, serif;
-  font-size: 16px;
+  font-size: 1rem;
 }
+
+
 
 body {
   margin: 0;
@@ -107,4 +109,13 @@ p {
 
 .back-icon:active {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+input, textarea {
+  padding: .5em;
+  border-radius: 8px;
+  border: 1px solid black;
 }
