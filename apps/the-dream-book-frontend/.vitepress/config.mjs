@@ -4,5 +4,5 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "The Dream Book",
   description: "Um livro que conta as histórias dos nossos melhores sonhos",
-  base: '/the-dream-book/'
+  base: '/the-dream-book/',
 })

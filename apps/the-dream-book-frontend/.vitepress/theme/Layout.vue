@@ -22,12 +22,14 @@ const { site, frontmatter, page } = useData()
   </div>
   <div v-else-if="frontmatter.layout === 'dream'">
     <a :href="withBase('/')">Home</a>
-    <h2>Eu tive um sonho</h2>
+
+    <h1>{{ frontmatter.title }}</h1>
     <p>{{ new Intl.DateTimeFormat('pt-BR').format(new Date(frontmatter.date))  }}</p>
     <p>{{ frontmatter.author }}</p>
     <ul>
       <li v-for="tag in frontmatter.tags" :key="tag">{{ tag }}</li>
     </ul>
+    
     <Content />
   </div>
   <div v-else>
