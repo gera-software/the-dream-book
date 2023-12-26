@@ -1,9 +1,10 @@
 <template>
     <div class="input-tags" @click="handleContainerClick">
+        {{ props.placeholder  }}
         <ul>
-            <li v-for="tag in tags" :key="tag" class="tag" @click="deleteTag(tag)">{{ tag }}</li>
+            <li v-for="tag in tags" :key="tag" class="tag" @click="deleteTag(tag)" title="Deletar tag">{{ tag }}</li>
             <li class="input-tags__input">
-                <input ref="inputRef"  @keydown.enter="addTag"/>
+                <input ref="inputRef"  @keydown.enter="addTag" :id="id" :placeholder="placeholder"/>
             </li>
         </ul>
     </div>
@@ -11,14 +12,23 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, useAttrs } from 'vue';
+
+const { id, placeholder } = useAttrs()
+
+const props = defineProps(['modelValue'])
+const emit = defineEmits(['update:modelValue'])
 
 const inputRef = ref(null)
 
-const tags = ref(new Set(["nossa turma", "coração", "não tem mais jeito", 'acabou', 'boa-sorte']))
+const tags = ref(new Set([...props.modelValue]))
+
+
+function emitUpdate() {
+    emit('update:modelValue', [...tags.value])
+}
 
 function handleContainerClick(event) {
-    console.log(event.target !== inputRef.value)
     if(event.target !== inputRef.value) {
         inputRef.value.focus()
     }
@@ -26,17 +36,17 @@ function handleContainerClick(event) {
 
 
 function addTag(event) {
-    const text = event.target.value.replace(/[^a-zç0-9áéíóúãõâêîôûàèìòù _-]/gim,"").trim()
-    console.log(!!text, text)
+    const text = event.target.value.replace(/[^a-zç0-9áéíóúãõâêîôûàèìòù _-]/gim,"").trim().toLowerCase()
     event.target.value = ''
     if(!!text) {
         tags.value.add(text)
+        emitUpdate()
     }
 }
 
 function deleteTag(tag) {
-    console.log('delete' ,tag)
     tags.value.delete(tag)
+    emitUpdate()
 }
 </script>
 
@@ -50,7 +60,7 @@ function deleteTag(tag) {
 }
 
 .input-tags:focus-within {
-    background-color: orange;
+    /* background-color: orange; */
     outline: black auto 1px;
     outline: -webkit-focus-ring-color auto 1px;
 }
@@ -87,7 +97,7 @@ function deleteTag(tag) {
     padding-left: 0;
     outline: none;
     border-color: transparent;
-    background-color: rgba(128, 128, 128, 0.151);
+    background-color: transparent;
 }
 
 

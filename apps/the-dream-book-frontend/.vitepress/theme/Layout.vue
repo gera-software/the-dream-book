@@ -72,8 +72,8 @@ const { site, frontmatter, page } = useData()
 <style>
 
 .page {
-    background-color: aqua;
-    display: flex;
+    /* background-color: aqua; */
+  display: flex;
   justify-content: center;
 }
 
