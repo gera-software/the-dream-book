@@ -16,6 +16,21 @@ body {
   background-color: rgb(248, 248, 248);
 }
 
+a:link {
+  color: rgb(0, 140, 255);
+}
+
+a:active {
+  color: rgb(0, 86, 156);
+}
+
+a:visited {
+  color: rgb(30, 86, 240);
+}
+
+a:hover {
+  color:  rgb(0, 121, 219);
+}
 
 
 h1 {
@@ -50,6 +65,7 @@ p {
   padding: 0;
   display: flex;
   gap: 5px;
+  margin: 1rem 0;
 }
 
 .tag {
@@ -74,6 +90,11 @@ p {
   color: rgba(0, 0, 0, 0.60);
   fill: rgba(0, 0, 0, 0.60);
   font-weight: 600;
+}
+
+.back-icon:link,
+.back-icon:visited {
+  color: rgba(0, 0, 0, 0.60);
 }
 
 .back-icon:hover {

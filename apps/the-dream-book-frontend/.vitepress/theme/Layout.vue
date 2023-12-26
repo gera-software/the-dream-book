@@ -1,4 +1,5 @@
 <script setup>
+import { data as dreams } from './dreams.data.js'
 import { useData, withBase } from 'vitepress'
 
 // https://vitepress.dev/reference/runtime-api#usedata
@@ -8,17 +9,35 @@ const { site, frontmatter, page } = useData()
 
 <template> 
     <!-- <pre>
-        {{ frontmatter }}
+      {{ frontmatter }}
       {{ page }}
       {{ site }}
     </pre> -->
-  <div v-if="frontmatter.home">
-    <h1>{{ site.title }}</h1>
-    <p>{{ site.description }}</p>
-    <ul>
-      <li><a href="./markdown-examples.html">Markdown Examples</a></li>
-      <li><a href="./api-examples.html">API Examples</a></li>
-    </ul>
+  <div v-if="frontmatter.home" class="page-home">
+    <div class="container-center">
+      <h1>{{ site.title }}</h1>
+      <p>{{ site.description }}</p>
+  
+      <!-- <pre>
+        {{ dreams }}
+      </pre> -->
+      <ul class="dreams-list">
+        <li v-for="dream of dreams">
+          <p class="date">{{ new Intl.DateTimeFormat('pt-BR').format(new Date(dream.frontmatter.date))  }}</p>
+          <h1>
+            <a :href="withBase(dream.url)">
+              {{ dream.frontmatter.title }}
+            </a>
+          </h1>
+          
+          <p class="author"><div class="avatar">GA</div> {{ dream.frontmatter.author }}</p>
+          <ul class="tags">
+            <li v-for="tag in dream.frontmatter.tags" :key="tag" class="tag">{{ tag }}</li>
+          </ul>
+  
+        </li>
+      </ul>
+    </div>
   </div>
   <div v-else-if="frontmatter.layout === 'dream'" class="page-dream">
     <section class="container-center">
@@ -81,6 +100,37 @@ p.author {
 
 p.date {
   font-size: 1rem;
+}
+
+.dreams-list {
+  /* background-color: red; */
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 5px;
+}
+
+.dreams-list > li {
+  padding: 1rem;
+  /* background-color: red; */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+/* .dreams-list a {
+  display: block;
+  background-color: aqua;
+  text-decoration: none;
+  color: black;
+  padding: 1rem;
+} */
+
+.page-home {
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
 }
 
 </style>
