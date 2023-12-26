@@ -2,6 +2,7 @@
   "name": "the-dream-book-frontend",
   "version": "1.0.0",
   "description": "Um livro que conta as histórias dos nossos melhores sonhos",
+  "type": "module",
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",
