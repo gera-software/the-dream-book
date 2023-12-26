@@ -114,7 +114,8 @@ p.date {
 }
 
 .dreams-list > li {
-  padding: 1rem;
+  /* padding: 1rem; */
+  margin: 1rem 0;
   /* background-color: red; */
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
