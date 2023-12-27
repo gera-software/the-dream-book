@@ -16,6 +16,7 @@
   "author": "Gilmar Andrade <gilmar-andrade@outlook.com",
   "license": "MIT",
   "dependencies": {
-    "octokit": "^3.1.2"
+    "octokit": "^3.1.2",
+    "vue3-telegram-login": "^0.0.4"
   }
 }

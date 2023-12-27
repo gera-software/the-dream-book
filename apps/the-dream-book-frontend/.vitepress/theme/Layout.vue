@@ -1,6 +1,23 @@
 <script setup>
 import { data as dreams } from './dreams.data.js'
 import { useData, withBase } from 'vitepress'
+import { telegramLoginTemp } from 'vue3-telegram-login'
+import { ref } from 'vue'
+
+const isLoaded = ref(false)
+
+function telegramLoadedCallbackFunc () {
+  console.log('script is loaded')
+  isLoaded.value = true
+}
+
+function yourCallbackFunction (user) {
+  // gets user as an input
+  // id, first_name, last_name, username,
+  // photo_url, auth_date and hash
+  console.log(user)
+}
+
 
 // https://vitepress.dev/reference/runtime-api#usedata
 const { site, frontmatter, page } = useData()
@@ -8,6 +25,15 @@ const { site, frontmatter, page } = useData()
 </script>
 
 <template> 
+  <!-- Callback mode -->
+  <span v-if="!isLoaded">Loading...</span>
+  <telegram-login-temp
+    mode="callback"
+    telegram-login="TheDreamBook_bot"
+    @loaded='telegramLoadedCallbackFunc'
+    @callback="yourCallbackFunction"
+    request-acces="write"
+  />
     <!-- <pre>
       {{ frontmatter }}
       {{ page }}
