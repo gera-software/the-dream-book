@@ -4,7 +4,7 @@
         <ul>
             <li v-for="tag in tags" :key="tag" class="tag" @click="deleteTag(tag)" title="Deletar tag">{{ tag }}</li>
             <li class="input-tags__input">
-                <input ref="inputRef" @blur="handleBlur"  @keydown.enter.prevent="addTag" :id="id" :placeholder="placeholder"/>
+                <textarea rows="1" ref="inputRef" @blur="handleBlur"  @keydown.enter.prevent="addTag" :id="id" :placeholder="placeholder"></textarea>
             </li>
         </ul>
     </div>
@@ -93,12 +93,17 @@ function deleteTag(tag) {
 .input-tags__input {
     /* background-color: blueviolet; */
     flex-grow: 1;
+    margin: 0.5rem 0;
+    height: 32px;
 }
 
-.input-tags__input input {
+.input-tags__input textarea {
     width: 100%;
-    height: 48px;
+    height:100%;
+    padding: 0.3rem 1rem;
     padding-left: 0;
+    resize: none;
+    overflow: hidden;
     outline: none;
     border-color: transparent;
     background-color: transparent;
