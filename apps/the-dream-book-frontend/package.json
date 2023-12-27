@@ -9,10 +9,13 @@
     "preview": "vitepress preview"
   },
   "devDependencies": {
-    "vue": "^3.3.13",
-    "vitepress": "^1.0.0-rc.33"
+    "vitepress": "^1.0.0-rc.33",
+    "vue": "^3.3.13"
   },
   "keywords": [],
   "author": "Gilmar Andrade <gilmar-andrade@outlook.com",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "octokit": "^3.1.2"
+  }
 }
