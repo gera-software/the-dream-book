@@ -2,6 +2,18 @@
 <script setup>
     import InputTags from '/components/InputTags.vue'
     import { ref } from 'vue'
+    import { useStorage } from '@vueuse/core'
+
+    const state = useStorage('telegram-user', {
+        id: undefined,
+        first_name: undefined,
+        last_name: undefined,
+        username: undefined,
+        photo_url: undefined,
+        auth_date: undefined,
+        hash: undefined,
+    })
+
 
     const date = ref(new Date().toISOString().split('T')[0]);
     const title = ref('');
@@ -22,6 +34,7 @@
 </script>
 
 <form class="container-center" @submit.prevent="submitForm">
+    {{state}}
     <h1>Escreva seu sonho</h1>
     <div class="form-group">
         <label class="form-label" for="date">Data</label>

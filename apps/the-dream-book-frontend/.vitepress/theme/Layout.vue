@@ -3,6 +3,7 @@ import { data as dreams } from './dreams.data.js'
 import { useData, withBase } from 'vitepress'
 import { telegramLoginTemp } from 'vue3-telegram-login'
 import { ref } from 'vue'
+import { useStorage } from '@vueuse/core'
 
 const isLoaded = ref(false)
 
@@ -11,11 +12,25 @@ function telegramLoadedCallbackFunc () {
   isLoaded.value = true
 }
 
-function yourCallbackFunction (user) {
+const defaultUser = {
+        id: undefined,
+        first_name: undefined,
+        last_name: undefined,
+        username: undefined,
+        photo_url: undefined,
+        auth_date: undefined,
+        hash: undefined,
+}
+
+const state = useStorage('telegram-user', defaultUser)
+
+function yourCallbackFunction ({ id, first_name, last_name, username, photo_url, auth_date, hash }) {
   // gets user as an input
   // id, first_name, last_name, username,
   // photo_url, auth_date and hash
-  console.log(user)
+  state.value = { id, first_name, last_name, username, photo_url, auth_date, hash }
+  console.log(state.value)
+  // localStorage.setItem('telegram-user', JSON.stringify(user))
 }
 
 
