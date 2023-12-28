@@ -76,33 +76,31 @@
     justify-content: center;
     align-items: center;
     font-size: 2rem;
+    text-align: center;
 }
 
 .modal-login-required::before {
     content: '';
-    width: 100%;
+    width: 40px;
     aspect-ratio: 1;
     border-radius: 100%;
     position: absolute;
-    top: -50%;
-    right: -50%;
-    background-color: rgba(0, 140, 255, .1);
+    top: 0%;
+    right: 0%;
+    margin: 1rem;
+    background-color: #54a9eb; /* telegram color */
 	animation: pulse 2s infinite;
-
-
 }
 
 @keyframes pulse {
 	0% {
-		transform: scale(1);
+		transform: scale(40);
+        opacity: 0;
 	}
-	
-	70% {
-		transform: scale(2);
-	}
-	
-	100% {
+
+    100% {
 		transform: scale(1);
+        opacity: .6;
 	}
 }
 
