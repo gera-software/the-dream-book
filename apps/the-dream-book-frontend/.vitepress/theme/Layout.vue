@@ -22,16 +22,16 @@ const defaultUser = {
         hash: undefined,
 }
 
-const state = useStorage('telegram-user', defaultUser)
+const telegramUser = useStorage('telegram-user', defaultUser)
 
 function yourCallbackFunction ({ id, first_name, last_name, username, photo_url, auth_date, hash }) {
   // gets user as an input
   // id, first_name, last_name, username,
   // photo_url, auth_date and hash
-  state.value = { id, first_name, last_name, username, photo_url, auth_date, hash }
-  console.log(state.value)
+  telegramUser.value = { id, first_name, last_name, username, photo_url, auth_date, hash }
+  console.log(telegramUser.value)
   // localStorage.setItem('telegram-user', JSON.stringify(user))
-  alert(`Seja bem vindo ${first_name} ${last_name}!`)
+  // alert(`Seja bem vindo ${first_name} ${last_name}!`)
 }
 
 
@@ -42,14 +42,15 @@ const { site, frontmatter, page } = useData()
 
 <template> 
   <div class="telegram-login-widget">
-    <span v-if="!isLoaded">Loading...</span>
     <telegram-login-temp
       mode="callback"
       telegram-login="TheDreamBook_bot"
       @loaded='telegramLoadedCallbackFunc'
       @callback="yourCallbackFunction"
       request-acces="write"
+      v-if="!telegramUser.id"
     />
+    <img v-else class="avatar" :src="telegramUser.photo_url" />
   </div>
   <pre>
       <!-- {{ frontmatter }} -->
@@ -119,7 +120,12 @@ const { site, frontmatter, page } = useData()
   </div>
   <div v-else class="page">
     <div class="container-center">
-      <a :href="withBase('/')">Home</a>
+      <a :href="withBase('/')" title="Home" class="back-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512">
+            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+          </svg>
+          Voltar
+      </a>
       <Content />
     </div>
   </div>
