@@ -3,6 +3,7 @@
     import InputTags from '/components/InputTags.vue'
     import { ref } from 'vue'
     import { useStorage } from '@vueuse/core'
+    import submitDream from './submit-dream.js'
 
     const telegramUser = useStorage('telegram-user', {
         id: undefined,
@@ -35,6 +36,8 @@
              content: content.value, 
         }
         console.log('submit form', payload)
+        submitDream(payload)
+        // TODO loading state
     }
 </script>
 
