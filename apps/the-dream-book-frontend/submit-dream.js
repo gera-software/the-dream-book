@@ -11,7 +11,7 @@ const AUTHOR_EMAIL = 'gilmar-andrade@outlook.com'
 
 const octokit = new Octokit({ 
     // auth: import.meta.env.VITE_GITHUB_PERSONAL_ACCESS_TOKEN
-    auth: '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' // personal fine grained token
+    auth: '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' // personal fine grained token
 });
 
 // console.log(octokit)
@@ -286,7 +286,7 @@ console.log('COMMIT OBJECT', commitObject)
 const blobContent = `---
 layout: dream
 title: Criado via GITHUB API
-date: 2023-12-26T15:13:03.123Z
+date: ${ new Date().toISOString() }
 tags: [ babado, não acredito, consegui ]
 author: {
     first_name: "Gilgamesh",
