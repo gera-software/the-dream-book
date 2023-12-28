@@ -40,15 +40,16 @@ const { site, frontmatter, page } = useData()
 </script>
 
 <template> 
-  <!-- Callback mode -->
-  <span v-if="!isLoaded">Loading...</span>
-  <telegram-login-temp
-    mode="callback"
-    telegram-login="TheDreamBook_bot"
-    @loaded='telegramLoadedCallbackFunc'
-    @callback="yourCallbackFunction"
-    request-acces="write"
-  />
+  <div class="telegram-login-widget">
+    <span v-if="!isLoaded">Loading...</span>
+    <telegram-login-temp
+      mode="callback"
+      telegram-login="TheDreamBook_bot"
+      @loaded='telegramLoadedCallbackFunc'
+      @callback="yourCallbackFunction"
+      request-acces="write"
+    />
+  </div>
   <pre>
       <!-- {{ frontmatter }} -->
       <!-- {{ page }} -->
