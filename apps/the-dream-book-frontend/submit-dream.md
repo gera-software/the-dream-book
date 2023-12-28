@@ -17,14 +17,19 @@
 
     const date = ref(new Date().toISOString().split('T')[0]);
     const title = ref('');
-    const author = ref('');
     const content = ref('');
     const tags = ref([]);
 
     function submitForm() {
         const payload = {
              date: date.value, 
-             author: author.value, 
+             author: {
+                first_name: telegramUser.value.first_name,
+                id: telegramUser.value.id,
+                last_name: telegramUser.value.last_name,
+                photo_url: telegramUser.value.photo_url,
+                username: telegramUser.value.username
+            }, 
              tags: [...tags.value],
              title: title.value, 
              content: content.value, 
@@ -41,10 +46,6 @@
     <div class="form-group">
         <label class="form-label" for="date">Data</label>
         <input id="date" type="date" v-model="date" required/>
-    </div>
-    <div class="form-group">
-        <label class="form-label" for="author">Autor</label>
-        <input id="author" type="text" v-model="author" placeholder="Seu Nome" required/>
     </div>
     <div class="form-group">
         <label class="form-label" for="tags">Tags</label>
