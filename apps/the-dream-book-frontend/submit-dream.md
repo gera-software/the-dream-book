@@ -22,7 +22,7 @@
 
     function submitForm() {
         const payload = {
-             date: date.value, 
+             date: new Date(date.value).toISOString(), 
              author: {
                 first_name: telegramUser.value.first_name,
                 id: telegramUser.value.id,
