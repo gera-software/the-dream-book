@@ -4,7 +4,7 @@
     import { ref } from 'vue'
     import { useStorage } from '@vueuse/core'
 
-    const state = useStorage('telegram-user', {
+    const telegramUser = useStorage('telegram-user', {
         id: undefined,
         first_name: undefined,
         last_name: undefined,
@@ -33,8 +33,10 @@
     }
 </script>
 
+<div class="modal-login-required" v-if="!telegramUser.id">
+    Faça login para continuar...
+</div>
 <form class="container-center" @submit.prevent="submitForm">
-    {{state}}
     <h1>Escreva seu sonho</h1>
     <div class="form-group">
         <label class="form-label" for="date">Data</label>
@@ -64,7 +66,45 @@
 
 <style>
 
+.modal-login-required {
+    position: fixed;
+    inset: 0;
+    backdrop-filter: blur(10px);
 
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.modal-login-required::before {
+    content: '';
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    background-color: rgba(0, 140, 255, .1);
+	animation: pulse 2s infinite;
+
+
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(1);
+	}
+	
+	70% {
+		transform: scale(2);
+	}
+	
+	100% {
+		transform: scale(1);
+	}
+}
 
 
 </style>

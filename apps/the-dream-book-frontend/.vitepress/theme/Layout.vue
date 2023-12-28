@@ -31,6 +31,7 @@ function yourCallbackFunction ({ id, first_name, last_name, username, photo_url,
   state.value = { id, first_name, last_name, username, photo_url, auth_date, hash }
   console.log(state.value)
   // localStorage.setItem('telegram-user', JSON.stringify(user))
+  alert(`Seja bem vindo ${first_name} ${last_name}!`)
 }
 
 
