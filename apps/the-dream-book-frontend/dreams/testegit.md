@@ -1,7 +1,7 @@
 ---
 layout: dream
 title: Criado via GITHUB API
-date: 2023-12-26T15:13:03.123Z
+date: 2023-12-28T22:32:42.510Z
 tags: [ babado, não acredito, consegui ]
 author: {
     first_name: "Gilgamesh",
