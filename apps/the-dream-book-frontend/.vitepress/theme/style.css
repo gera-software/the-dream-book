@@ -50,15 +50,25 @@ p {
 
 
 .avatar {
-  display: block;
   width: 44px;
   height: 44px;
-  background-color: cadetblue;
   border-radius: 50%;
-  color: white;
+  object-fit: cover;
+}
+
+.author_info {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+}
+
+.author_info .username {
+  opacity: .8;
+  font-size: 1rem;
+}
+
+.author_info .name {
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 

@@ -2,8 +2,14 @@
 layout: dream
 title: Criado via GITHUB API
 date: 2023-12-26T15:13:03.123Z
-author: Gilmar Andrade
 tags: [ babado, não acredito, consegui ]
+author: {
+    first_name: "Gilgamesh",
+    id: 300420393,
+    last_name: "Andrade",
+    photo_url: "https://t.me/i/userpic/320/v-Dk5mavRm_ziwhEn2p4ivbhw8dgHZhZoiCQcIIZnEU.jpg",
+    username: "AndradeGilmar"
+}
 ---
 
 Hoje eu sonhei que a nossa turma estava no IF assistindo uma aula de português com a professora Sheila.

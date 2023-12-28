@@ -49,11 +49,11 @@ const { site, frontmatter, page } = useData()
     @callback="yourCallbackFunction"
     request-acces="write"
   />
-    <!-- <pre>
-      {{ frontmatter }}
-      {{ page }}
-      {{ site }}
-    </pre> -->
+  <pre>
+      <!-- {{ frontmatter }} -->
+      <!-- {{ page }} -->
+      <!-- {{ site }} -->
+    </pre>
   <div v-if="frontmatter.home" class="page-home">
     <div class="container-center">
       <h1>{{ site.title }}</h1>
@@ -71,7 +71,13 @@ const { site, frontmatter, page } = useData()
             </a>
           </h1>
           
-          <p class="author"><div class="avatar">GA</div> {{ dream.frontmatter.author }}</p>
+          <p class="author" :id="dream.frontmatter.author.id">
+            <img class="avatar" :src="dream.frontmatter.author.photo_url" />
+            <span class="author_info">
+              <span class="name">{{ dream.frontmatter.author.first_name }} {{ dream.frontmatter.author.last_name }}</span>
+              <span class="username">@{{ dream.frontmatter.author.username }}</span>
+            </span>
+          </p>
           <ul class="tags">
             <li v-for="tag in dream.frontmatter.tags" :key="tag" class="tag">{{ tag }}</li>
           </ul>
@@ -93,7 +99,14 @@ const { site, frontmatter, page } = useData()
         <p class="date">{{ new Intl.DateTimeFormat('pt-BR').format(new Date(frontmatter.date))  }}</p>
         <h1>{{ frontmatter.title }}</h1>
         
-        <p class="author"><div class="avatar">GA</div> {{ frontmatter.author }}</p>
+        <p class="author" :id="frontmatter.author.id">
+          <img class="avatar" :src="frontmatter.author.photo_url" />
+          <span class="author_info">
+            <span class="name">{{ frontmatter.author.first_name }} {{ frontmatter.author.last_name }}</span>
+            <span class="username">@{{ frontmatter.author.username }}</span>
+          </span>
+        </p>
+
         <ul class="tags">
           <li v-for="tag in frontmatter.tags" :key="tag" class="tag">{{ tag }}</li>
         </ul>
@@ -148,6 +161,8 @@ p.author {
   gap: 10px;
   margin: 0;
 }
+
+
 
 p.date {
   font-size: 1rem;
