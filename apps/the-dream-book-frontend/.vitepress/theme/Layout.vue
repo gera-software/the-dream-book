@@ -1,9 +1,10 @@
 <script setup>
 import { data as dreams } from './dreams.data.js'
 import { useData, withBase } from 'vitepress'
-import { telegramLoginTemp } from 'vue3-telegram-login'
 import { ref } from 'vue'
 import { useStorage } from '@vueuse/core'
+
+import TelegramLoginWidget from '/components/TelegramLoginWidget.vue'
 
 const isLoaded = ref(false)
 
@@ -41,17 +42,19 @@ const { site, frontmatter, page } = useData()
 </script>
 
 <template> 
-  <div class="telegram-login-widget">
-    <telegram-login-temp
-      mode="callback"
-      telegram-login="TheDreamBook_bot"
-      @loaded='telegramLoadedCallbackFunc'
-      @callback="yourCallbackFunction"
-      request-acces="write"
-      v-if="!telegramUser.id"
-    />
-    <img v-else class="avatar" :src="telegramUser.photo_url" />
-  </div>
+  <ClientOnly>
+    <div class="telegram-login-widget">
+      <TelegramLoginWidget
+        mode="callback"
+        telegram-login="TheDreamBook_bot"
+        @loaded='telegramLoadedCallbackFunc'
+        @callback="yourCallbackFunction"
+        request-acces="write"
+        v-if="!telegramUser.id"
+      />
+      <img v-else class="avatar" :src="telegramUser.photo_url" />
+    </div>
+  </ClientOnly>
   <pre>
       <!-- {{ frontmatter }} -->
       <!-- {{ page }} -->
