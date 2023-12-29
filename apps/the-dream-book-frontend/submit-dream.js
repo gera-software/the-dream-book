@@ -15,7 +15,7 @@ export default async function submitDream({ title, content, date, tags, author }
   })
   
   // TODO 
-  const path = 'apps/the-dream-book-frontend/dreams/testegit.md'
+  const path = `apps/the-dream-book-frontend/dreams/${author.id}/testegit.md`
   
   const markdown = `---
 layout: dream

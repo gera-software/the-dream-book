@@ -36,7 +36,7 @@
              content: content.value, 
         }
         console.log('submit form', payload)
-        submitDream(payload)
+        await submitDream(payload)
         // TODO loading state
     }
 </script>
