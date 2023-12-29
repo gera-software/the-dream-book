@@ -59,7 +59,7 @@
     Faça login para continuar...
 </div>
 <form class="container-center" @submit.prevent="submitForm">
-    <h1>Escreva seu sonho</h1>
+    <h1>Conte seu sonho</h1>
     <div class="form-group">
         <label class="form-label" for="date">Data</label>
         <input id="date" type="date" v-model="date" required/>
