@@ -7,6 +7,7 @@ import { useStorage } from '@vueuse/core'
 import TelegramLoginWidget from '/components/TelegramLoginWidget.vue'
 
 const telegramBotName = import.meta.env.PROD ? import.meta.env.VITE_TELEGRAM_BOT_PRODUCAO : import.meta.env.VITE_TELEGRAM_BOT_TESTE
+console.log('telegramBotName', telegramBotName, import.meta.env)
 
 const isLoaded = ref(false)
 
