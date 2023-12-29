@@ -52,6 +52,8 @@ jobs:
           VITE_GITHUB_REPO: ${{ vars.VITE_GITHUB_REPO }}
           VITE_GITHUB_AUTHOR_NAME: ${{ vars.VITE_GITHUB_AUTHOR_NAME }}
           VITE_GITHUB_AUTHOR_EMAIL: ${{ vars.VITE_GITHUB_AUTHOR_EMAIL }}
+          VITE_TELEGRAM_BOT_TESTE: ${{ vars.VITE_TELEGRAM_BOT_TESTE }}
+          VITE_TELEGRAM_BOT_PRODUCAO: ${{ vars.VITE_TELEGRAM_BOT_PRODUCAO }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
