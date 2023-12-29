@@ -4,6 +4,12 @@
     import { ref } from 'vue'
     import { useStorage } from '@vueuse/core'
     import submitDream from './submit-dream.js'
+    import { useRouter } from 'vitepress'
+    import { withBase } from 'vitepress'
+
+    const router = useRouter()
+
+    const isLoading = ref(false)
 
     const telegramUser = useStorage('telegram-user', {
         id: undefined,
@@ -22,6 +28,7 @@
     const tags = ref([]);
 
     async function submitForm() {
+        isLoading.value = true
         const payload = {
              date: new Date(date.value).toISOString(), 
              author: {
@@ -36,8 +43,15 @@
              content: content.value, 
         }
         console.log('submit form', payload)
-        await submitDream(payload)
-        // TODO loading state
+        // await submitDream(payload)
+        const path = submitDream(payload)
+        setTimeout(() => {
+            path.then(url => {
+                console.log('pronto', url)
+                isLoading.value = false
+                router.go(withBase(url))
+            })
+        }, 60000)
     }
 </script>
 
@@ -63,7 +77,10 @@
         <textarea id="content" v-model="content" placeholder="Escreva a história aqui..." rows="20" required></textarea>
     </div>
     <div class="form-group">
-        <button type="submit" class="button">Enviar</button>
+        <button type="submit" class="button progress-button" :class="{ 'loading': isLoading }"  :disabled="isLoading" >
+            <span class="progress-button__progress"></span>
+            <span class="progress-button__content">{{ isLoading ? 'Aguarde...' : 'Enviar' }}</span>
+        </button>
     </div>
 </form>
 
@@ -108,5 +125,50 @@
 	}
 }
 
+.progress-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-button.loading:disabled {
+  /* background-color: rgb(0, 140, 255); */
+  color: white;
+  background-color: rgb(0 96 175);
+  cursor: not-allowed;
+}
+
+.progress-button .progress-button__content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress-button .progress-button__progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    transform-origin: top left;
+    pointer-events: none;
+
+}
+
+.progress-button.loading .progress-button__progress {
+    animation: progress-load 60s ease-out;
+    background-color: rgb(0, 140, 255);
+}
+
+@keyframes progress-load {
+	0% {
+		transform: translateX(-100%);
+	}
+
+    100% {
+		transform: translateX(0)
+	}
+}
 
 </style>

@@ -11,14 +11,16 @@ export default async function submitDream({ title, content, date, tags, author }
 
   const id = uuidv4()
   
-  // TODO use path module 
-  const path = `apps/the-dream-book-frontend/dreams/${author.id}/${id}.md`
-  console.log(path)
+  // TODO use path module
+  const basePath = `apps/the-dream-book-frontend/`
+  const url = import.meta.env.DEV == true ? `dreams/tests/${author.id}/${id}` : `dreams/${author.id}/${id}`
+  const path = `${basePath}${url}.md`
+  console.log(path, url)
 
   //date no formato ISO string
   // TODO data está sendo apresentada na página como sendo o dia anterior...
   const header = `id: ${id}
-title: "${title}"
+title: "${ import.meta.env.DEV == true ? '[test] ': ''}${title}"
 date: "${ date }"
 tags: [ ${tags.map(t => `"${t}"`).join(', ')} ]
 author: {
@@ -39,11 +41,13 @@ ${content}`
   console.log(markdown)
   await githubService.addFile({ path, content: markdown, encoding: 'utf-8' })
 
-  await githubService.commit({ 
-    message: `Submit dream (via GITHUB API)
+const commitMessage = `Submit dream ${id} (via GITHUB API)
     
-${header}` 
+${header}`
+
+  await githubService.commit({ 
+    message: commitMessage 
   })
 
-  return true
+  return url + '.html'
 }
