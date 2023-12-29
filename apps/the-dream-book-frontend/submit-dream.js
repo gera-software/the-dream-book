@@ -12,8 +12,8 @@ export default async function submitDream({ title, content, date, tags, author }
   const id = uuidv4()
   
   // TODO use path module
-  const basePath = `apps/the-dream-book-frontend/`
-  const url = import.meta.env.DEV == true ? `dreams/tests/${author.id}/${id}` : `dreams/${author.id}/${id}`
+  const basePath = `apps/the-dream-book-frontend`
+  const url = import.meta.env.DEV == true ? `/dreams/tests/${author.id}/${id}` : `/dreams/${author.id}/${id}`
   const path = `${basePath}${url}.md`
   console.log(path, url)
 

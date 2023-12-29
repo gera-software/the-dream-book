@@ -47,7 +47,7 @@
         const path = submitDream(payload)
         setTimeout(() => {
             path.then(url => {
-                console.log('pronto', url)
+                console.log('pronto', withBase(url))
                 isLoading.value = false
                 router.go(withBase(url))
             })
