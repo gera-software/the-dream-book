@@ -4,8 +4,8 @@
 import { Octokit } from "octokit"
 import { createBlobObject, createCommit, createTree, getCommitObject, getReferenceToHead, getTreeObject, updateHead } from "./helpers.js"
 
-// TODO env variables
-const VITE_GITHUB_PERSONAL_ACCESS_TOKEN = ''
+console.log('ENV MODE', import.meta.env.MODE)
+console.log('ENV', import.meta.env)
 
 export default class GitHubService {
     constructor({ owner, repo, author_name, author_email }) {
@@ -17,8 +17,7 @@ export default class GitHubService {
         this.blobs = []
 
         this.octokit = new Octokit({ 
-            // auth: import.meta.env.VITE_GITHUB_PERSONAL_ACCESS_TOKEN
-            auth: VITE_GITHUB_PERSONAL_ACCESS_TOKEN
+            auth: import.meta.env.VITE_GITHUB_PERSONAL_ACCESS_TOKEN // TODO falha de segurança: the value is visible from the build code
         });
     }
 

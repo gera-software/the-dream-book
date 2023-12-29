@@ -1,18 +1,12 @@
 import GitHubService from './services/github-service/service.js'
 import { v4 as uuidv4 } from 'uuid';
 
-// TODO env
-const OWNER = 'gera-software'
-const REPO = 'the-dream-book'
-const AUTHOR_NAME = 'Gilmar Andrade'
-const AUTHOR_EMAIL = 'gilmar-andrade@outlook.com'
-
 export default async function submitDream({ title, content, date, tags, author }) {
   const githubService = new GitHubService({ 
-    owner: OWNER, 
-    repo: REPO, 
-    author_name: AUTHOR_NAME, 
-    author_email: AUTHOR_EMAIL 
+    owner: import.meta.env.VITE_GITHUB_OWNER, 
+    repo: import.meta.env.VITE_GITHUB_REPO, 
+    author_name: import.meta.env.VITE_GITHUB_AUTHOR_NAME, 
+    author_email: import.meta.env.VITE_GITHUB_AUTHOR_EMAIL
   })
 
   const id = uuidv4()
