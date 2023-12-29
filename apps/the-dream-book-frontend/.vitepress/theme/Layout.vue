@@ -6,6 +6,8 @@ import { useStorage } from '@vueuse/core'
 
 import TelegramLoginWidget from '/components/TelegramLoginWidget.vue'
 
+const telegramBotName = import.meta.env.PROD ? 'TheDreamBook_bot' : 'TheDreamBook_testebot'
+
 const isLoaded = ref(false)
 
 function telegramLoadedCallbackFunc () {
@@ -55,13 +57,13 @@ const dreams = computed(() => {
     <div class="telegram-login-widget">
       <TelegramLoginWidget
         mode="callback"
-        telegram-login="TheDreamBook_bot"
+        :telegram-login="telegramBotName"
         @loaded='telegramLoadedCallbackFunc'
         @callback="yourCallbackFunction"
         request-acces="write"
         v-if="!telegramUser.id"
       />
-      <img v-else class="avatar" :src="telegramUser.photo_url" />
+      <img v-else class="avatar" :src="telegramUser.photo_url" :title="`${telegramUser.first_name} ${telegramUser.last_name} ${telegramUser.username ? `- @${telegramUser.username}` : '' }`" />
     </div>
   </ClientOnly>
   <pre>

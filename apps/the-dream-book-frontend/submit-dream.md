@@ -98,6 +98,7 @@
     align-items: center;
     font-size: 2rem;
     text-align: center;
+    z-index: 5;
 }
 
 .modal-login-required::before {
