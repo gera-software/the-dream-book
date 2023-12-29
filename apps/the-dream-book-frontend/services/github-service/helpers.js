@@ -88,6 +88,7 @@ export async function createBlobObject(octokit, { owner, repo, content, encoding
     content,
     encoding, // 'utf-8' or 'base64'
     headers: {
+      Authorization: `token ${import.meta.env.VITE_GITHUB_PERSONAL_ACCESS_TOKEN}`,
       'X-GitHub-Api-Version': '2022-11-28'
     }
   })
