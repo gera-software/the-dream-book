@@ -5,7 +5,7 @@ import { Octokit } from "octokit"
 import { createBlobObject, createCommit, createTree, getCommitObject, getReferenceToHead, getTreeObject, updateHead } from "./helpers.js"
 
 // TODO env variables
-const VITE_GITHUB_PERSONAL_ACCESS_TOKEN = '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'
+const VITE_GITHUB_PERSONAL_ACCESS_TOKEN = ''
 
 export default class GitHubService {
     constructor({ owner, repo, author_name, author_email }) {
