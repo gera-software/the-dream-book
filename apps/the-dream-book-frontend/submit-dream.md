@@ -48,7 +48,7 @@
         setTimeout(() => {
             path.then(url => {
                 console.log('pronto', withBase(url))
-                isLoading.value = false
+                // isLoading.value = false
                 router.go(withBase(url))
             })
         }, 60000)
