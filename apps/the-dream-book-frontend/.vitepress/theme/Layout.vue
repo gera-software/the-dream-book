@@ -81,7 +81,7 @@ const { site, frontmatter, page } = useData()
             <img class="avatar" :src="dream.frontmatter.author.photo_url" />
             <span class="author_info">
               <span class="name">{{ dream.frontmatter.author.first_name }} {{ dream.frontmatter.author.last_name }}</span>
-              <span class="username">@{{ dream.frontmatter.author.username }}</span>
+              <span class="username" v-if="dream.frontmatter.author.username">@{{ dream.frontmatter.author.username }}</span>
             </span>
           </p>
           <ul class="tags">
@@ -109,7 +109,7 @@ const { site, frontmatter, page } = useData()
           <img class="avatar" :src="frontmatter.author.photo_url" />
           <span class="author_info">
             <span class="name">{{ frontmatter.author.first_name }} {{ frontmatter.author.last_name }}</span>
-            <span class="username">@{{ frontmatter.author.username }}</span>
+            <span class="username" v-if="frontmatter.author.username">@{{ frontmatter.author.username }}</span>
           </span>
         </p>
 
