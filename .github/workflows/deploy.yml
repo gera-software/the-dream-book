@@ -46,6 +46,12 @@ jobs:
         run: |
           npx turbo build --filter=the-dream-book-frontend  # npm run docs:build / pnpm docs:build / yarn docs:build / bun run docs:build
           touch apps/the-dream-book-frontend/.vitepress/dist/.nojekyll
+        env:
+          VITE_GITHUB_PERSONAL_ACCESS_TOKEN: ${{ vars.VITE_GITHUB_PERSONAL_ACCESS_TOKEN }}
+          VITE_GITHUB_OWNER: ${{ vars.VITE_GITHUB_OWNER }}
+          VITE_GITHUB_REPO: ${{ vars.VITE_GITHUB_REPO }}
+          VITE_GITHUB_AUTHOR_NAME: ${{ vars.VITE_GITHUB_AUTHOR_NAME }}
+          VITE_GITHUB_AUTHOR_EMAIL: ${{ vars.VITE_GITHUB_AUTHOR_EMAIL }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
