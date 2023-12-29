@@ -1,7 +1,7 @@
 <script setup>
-import { data as dreams } from './dreams.data.js'
+import { data as dreamData } from './dreams.data.js'
 import { useData, withBase } from 'vitepress'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useStorage } from '@vueuse/core'
 
 import TelegramLoginWidget from '/components/TelegramLoginWidget.vue'
@@ -38,6 +38,15 @@ function yourCallbackFunction ({ id, first_name, last_name, username, photo_url,
 
 // https://vitepress.dev/reference/runtime-api#usedata
 const { site, frontmatter, page } = useData()
+
+const dreams = computed(() => {
+  if(import.meta.env.PROD) {
+    return dreamData
+            .filter(dream => !dream.frontmatter.title.startsWith('[test]')) // remove os arquivos de teste
+  } else {
+    return dreamData
+  }
+})
 
 </script>
 
