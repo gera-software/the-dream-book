@@ -20,20 +20,24 @@ export default async function submitDream({ title, content, date, tags, author }
   // TODO use path module 
   const path = `apps/the-dream-book-frontend/dreams/${author.id}/${id}.md`
   console.log(path)
+
+  //date no formato ISO string
+  // TODO data está sendo apresentada na página como sendo o dia anterior...
+  const header = `id: ${id}
+title: "${title}"
+date: "${ date }"
+tags: [ ${tags.map(t => `"${t}"`).join(', ')} ]
+author: {
+    first_name: "${author.first_name}",
+    id: ${author.id},
+    last_name: "${author.last_name}",
+    photo_url: "${author.photo_url}",
+    username: "${author.username}"
+}`
   
   const markdown = `---
 layout: dream
-id: ${id}
-title: ${title}
-date: ${ date /* date no formato ISO string, TODO está sendo apresentada na página como sendo o dia anterior... */ }
-tags: [ ${tags} ]
-author: {
-    first_name: ${author.first_name},
-    id: ${author.id},
-    last_name: ${author.last_name},
-    photo_url: ${author.photo_url},
-    username: ${author.username}
-}
+${header}
 ---
 
 ${content}`
@@ -42,7 +46,9 @@ ${content}`
   await githubService.addFile({ path, content: markdown, encoding: 'utf-8' })
 
   await githubService.commit({ 
-    message: 'teste submit dream via GITHUB API' // TODO 
+    message: `Submit dream (via GITHUB API)
+    
+${header}` 
   })
 
   return true
