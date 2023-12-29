@@ -21,7 +21,7 @@
     const content = ref('');
     const tags = ref([]);
 
-    function submitForm() {
+    async function submitForm() {
         const payload = {
              date: new Date(date.value).toISOString(), 
              author: {

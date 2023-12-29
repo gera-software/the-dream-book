@@ -1,4 +1,5 @@
 import GitHubService from './services/github-service/service.js'
+import { v4 as uuidv4 } from 'uuid';
 
 // TODO env
 const OWNER = 'gera-software'
@@ -13,12 +14,16 @@ export default async function submitDream({ title, content, date, tags, author }
     author_name: AUTHOR_NAME, 
     author_email: AUTHOR_EMAIL 
   })
+
+  const id = uuidv4()
   
-  // TODO 
-  const path = `apps/the-dream-book-frontend/dreams/${author.id}/testegit.md`
+  // TODO use path module 
+  const path = `apps/the-dream-book-frontend/dreams/${author.id}/${id}.md`
+  console.log(path)
   
   const markdown = `---
 layout: dream
+id: ${id}
 title: ${title}
 date: ${ date /* date no formato ISO string, TODO está sendo apresentada na página como sendo o dia anterior... */ }
 tags: [ ${tags} ]
