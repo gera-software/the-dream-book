@@ -54,6 +54,7 @@ p {
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  background-color: #c1c1c1;
 }
 
 .author_info {
